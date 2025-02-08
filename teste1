@@ -1,0 +1,40 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Window = Fluent:CreateWindow({
+    Title = "Test",
+    SubTitle = "by zkz",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "house" }),
+}
+
+local Options = Fluent.Options
+    Tabs.Main:AddButton({
+        Title = "Botão",
+        Description = "Um simples botão",
+        Callback = function()
+            print("tranquilo?")
+        end
+     })
+
+     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+        Title = "Dropdown",
+        Values = {"1", "2"},
+        Multi = false,
+        Default = 1,
+    })
+    
+    Dropdown:OnChanged(function(Value)
+        print("Dropdown changed:", Value)
+    end)
+Fluent:Notify({
+    Title = "Oi",
+    Content = "script executado",
+    SubContent = nil,
+    Duration = 5 -- Set to nil to make the notification not disappear
+})
